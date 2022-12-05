@@ -13,6 +13,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
         }
 
         button {
@@ -33,6 +34,7 @@
 
 <body>
     <button onclick="changeColor(6)">Click here</button>
+    <button onclick="startfunc()" class="start">Start</button>
 
     <script>
         function changeColor(count) {
@@ -42,6 +44,21 @@
                 result += colorCodes.charAt(Math.floor(Math.random() * 16));
             }
             document.getElementsByTagName('body')[0].style.backgroundColor = '#' + result
+        }
+
+        var storeInterval = ''
+        function startfunc(){
+            storeInterval = setInterval(() => {
+                changeColor(6)
+            }, 500);
+            document.getElementsByClassName('start')[0].innerHTML = "Stop"
+            document.getElementsByClassName('start')[0].setAttribute("onclick", "stopfunc()");
+        }
+
+        function stopfunc() {
+            clearInterval(storeInterval);
+            document.getElementsByClassName('start')[0].innerHTML = "Start"
+            document.getElementsByClassName('start')[0].setAttribute("onclick", "startfunc()");
         }
 
     </script>
